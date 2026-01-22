@@ -4,10 +4,10 @@ function LoadingStatus({theme}){
 
         <div className="loading-animation">
             <div className="spinner"></div>
-            </div>
         </div>
         <p className="loading-info">
             Please wait while the story is being generated...</p>
+        </div>
     }
 
 export default LoadingStatus
