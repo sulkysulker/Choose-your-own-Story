@@ -1,9 +1,8 @@
 import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
 import ThemeInput from "./ThemeInput.jsx";
 import LoadingStatus from "./LoadingStatus.jsx";
-import {API_BASE_URL} from "../util.js";
+import {api} from "../util.js";
 
 
 function StoryGenerator() {
@@ -36,7 +35,7 @@ function StoryGenerator() {
         setTheme(theme)
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/stories/create`, {theme})
+            const response = await api.post(`/stories/create`, {theme})
             const {job_id, status} = response.data
             setJobId(job_id)
             setJobStatus(status)
@@ -50,7 +49,7 @@ function StoryGenerator() {
 
     const pollJobStatus = async (id) => {
         try {
-            const response = await axios.get(`${API_BASE_URL}/jobs/${id}`)
+            const response = await api.get(`/jobs/${id}`)
             const {status, story_id, error: jobError} = response.data
             setJobStatus(status)
 
