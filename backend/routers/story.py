@@ -38,7 +38,7 @@ def create_story(request:CreateStoryRequest,
     )
     db.add(job)
     db.commit()
-    # Todo: add background tasks,generate story #
+    # Generate story asynchronously
     background_tasks.add_task(
         generate_story_task,job_id=job_id,theme=request.theme,
         session_id=session_id
